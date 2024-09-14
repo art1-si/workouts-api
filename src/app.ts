@@ -1,23 +1,22 @@
 import express from 'express';
-import dotenv from 'dotenv';
 import cors from 'cors';
 import helmet from 'helmet';
-import { exercisesRoute } from './routes/exercises.routes';
+import { exerciseRoute } from './routes/exercise.routes';
+import './configs/env_configs';
 
 
 
 
-dotenv.config();
+
 
 const app = express();
 const port = process.env.PORT || 3000;
 
 app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
 app.use(cors())
 app.use(helmet())
 
-app.use('/', exercisesRoute)
+app.use('/', exerciseRoute)
 
 
 
