@@ -8,7 +8,7 @@ const dbPassword = process.env.DB_PASS;
 const dbName = process.env.DB_NAME;
 
 console.log(dbHost, dbPort, dbUser, dbPassword, dbName);
-export const postgresqlDatabase = new Client({
+export const postgresqlDatabaseClient = new Client({
     user: dbUser,
     host: dbHost,
     database: dbName,
@@ -16,7 +16,7 @@ export const postgresqlDatabase = new Client({
     port: parseInt(dbPort),
 });
 
-postgresqlDatabase.connect().then(() => {
+postgresqlDatabaseClient.connect().then(() => {
     console.log('Connected to PostgreSQL database');
 }).catch((error) => {
     console.error('Error connecting to PostgreSQL database', error);
