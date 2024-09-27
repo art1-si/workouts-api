@@ -29,7 +29,11 @@ export const createAccount: RequestHandler = async (req, res) => {
         const user = await AuthService.createAccount(email, password);
         const token = generateToken(user.id);
         const refreshToken = generateRefreshToken(user.id);
-        res.status(201).json({ user, token, refreshToken });
+        res.status(201).json({ user: { 
+            id: user.id, 
+            createdAt: user.createdAt,
+            email: user.email
+        },access_token: token,refresh_token: refreshToken });
     } catch (error) {
         if (error instanceof UserNotFoundException){
             return res.status(404).json({message: error.message });
