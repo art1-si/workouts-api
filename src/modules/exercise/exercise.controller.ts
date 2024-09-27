@@ -1,5 +1,5 @@
 import { RequestHandler } from "express";
-import { postgresqlDatabaseClient } from "../data_source/postgresql_database_client";
+import { postgresqlDatabaseClient } from "../../data_source/postgresql_database_client";
 
 export const getExercises: RequestHandler = async (req, res, next) => {
     try{

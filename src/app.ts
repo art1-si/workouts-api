@@ -1,7 +1,7 @@
 import express from 'express';
 import cors from 'cors';
 import helmet from 'helmet';
-import { exerciseRoute } from './routes/exercise.routes';
+import { exerciseRoute } from './modules/exercise/exercise.routes';
 import './configs/env_configs';
 
 
