@@ -7,8 +7,7 @@ const dbUser = process.env.DB_USER;
 const dbPassword = process.env.DB_PASS;
 const dbName = process.env.DB_NAME;
 
-console.log(dbHost, dbPort, dbUser, dbPassword, dbName);
-export const postgresqlDatabaseClient = new Client({
+const postgresqlDatabaseClient = new Client({
     user: dbUser,
     host: dbHost,
     database: dbName,
@@ -21,3 +20,12 @@ postgresqlDatabaseClient.connect().then(() => {
 }).catch((error) => {
     console.error('Error connecting to PostgreSQL database', error);
 });
+
+// Function to execute SQL queries
+export const execute = async (text: string, params?: string[]) => {
+    const start = Date.now();
+    const res = await postgresqlDatabaseClient.query(text, params);
+    const duration = Date.now() - start;
+    console.log('executed query', { text, duration, rows: res.rowCount });
+    return res;
+};
