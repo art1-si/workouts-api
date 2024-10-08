@@ -22,7 +22,7 @@ postgresqlDatabaseClient.connect().then(() => {
 });
 
 // Function to execute SQL queries
-export const execute = async (text: string, params?: string[]) => {
+export const execute = async (text: string, params?: unknown[]) => {
     const start = Date.now();
     const res = await postgresqlDatabaseClient.query(text, params);
     const duration = Date.now() - start;

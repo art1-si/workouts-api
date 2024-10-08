@@ -3,4 +3,4 @@ import { getExercises } from './exercise.controller';
 
 export const exerciseRoute = Router();
 
-exerciseRoute.get('/exercises', getExercises);
+exerciseRoute.get('/exercises/:id?', getExercises);

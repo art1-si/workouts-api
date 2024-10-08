@@ -1,17 +1,36 @@
 import { RequestHandler } from "express";
-import { execute } from "../../data_source/postgresql_database_client";
+import * as ExerciseService from './exercise.service';
 
-export const getExercises: RequestHandler = async (req, res, next) => {
-    try{
-        console.log('Hello from getExercises');
-        const result = await execute('SELECT * FROM exercise');
-        console.log(result.rows);
-        res.status(200).json(result.rows);
-        next();
+
+
+
+export const getExercises: RequestHandler = async (req, res) => {
+    const idParam = req.params.id;
+
+    try {
+        if (idParam) {
+            // Parse the id as a number
+            const id = parseInt(idParam, 10);
+
+            // Fetch a single exercise by ID
+            console.log(`Fetching exercise with ID: ${id}`);
+            const exercise = await ExerciseService.getExerciseById(id);
+
+            if (!exercise) {
+                return res.status(404).json({ message: 'Exercise not found' });
+            }
+
+            return res.status(200).json(exercise);
+        } else {
+            // Fetch all exercises
+            console.log('Fetching all exercises');
+            const result = await ExerciseService.getExercises();
+            return res.status(200).json(result);
+        }
     } catch (error) {
         console.error(error);
         res.status(500).json({ message: 'Internal Server Error' });
-        next();
     }
  
 };
+
