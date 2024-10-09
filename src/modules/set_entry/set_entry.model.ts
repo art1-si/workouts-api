@@ -1,3 +1,14 @@
+/**
+ * Object representing a set entry.
+ * @typedef {Object} SetEntry
+ * @property {number} id - Set entry id
+ * @property {number} userId - User id
+ * @property {number} exerciseId - Exercise id
+ * @property {number} weight - Weight used
+ * @property {number} reps - Number of reps
+ * @property {string} createdAt - Set entry creation date
+ * @property {string} updatedAt - Set entry update date
+ */
 export type SetEntry = {
     id: number;
     userId: number;
@@ -8,6 +19,11 @@ export type SetEntry = {
     updatedAt: string;
 };
 
+/**
+ * Method for parsing a set entry object with snake type case.
+ * @param setEntry 
+ * @returns The set entry object with camel case.
+ */
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export const setEntryParser = (setEntry: any): SetEntry => {
     return {

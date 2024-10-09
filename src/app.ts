@@ -31,6 +31,4 @@ app.use('/', setEntryRoute)
 
 
 
-app.listen(port, () => {
-  return console.log(`Express is listening at http://localhost:${port}`);
-});
+app.listen(port);

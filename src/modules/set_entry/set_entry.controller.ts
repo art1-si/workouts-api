@@ -2,6 +2,12 @@ import { ForbiddenException } from '../auth/auth.exceptions';
 import * as SetEntryService from './set_entry.service';
 import { RequestHandler } from 'express';
 
+/**
+ * Handles the create set entry request.
+ * @param req - The request object.
+ * @param res - The response object.
+ * @returns The RequestHandler function.
+*/
 export const createSetEntry: RequestHandler = async (req, res) => {
     const setEntry = req.body;
 
@@ -14,6 +20,12 @@ export const createSetEntry: RequestHandler = async (req, res) => {
     }
 };
 
+/**
+ * Handles the update set entry request.
+ * @param req - The request object.
+ * @param res - The response object.
+ * @returns The RequestHandler function.
+*/
 export const updateSetEntry: RequestHandler = async (req, res) => {
     const id = parseInt(req.params.id, 10);
     const userId = req.body.userId;
@@ -32,6 +44,12 @@ export const updateSetEntry: RequestHandler = async (req, res) => {
     }
 };
 
+/**
+ * Handles the get set entries request.
+ * @param req - The request object.
+ * @param res - The response object.
+ * @returns The RequestHandler function.
+*/
 export const getSetEntries: RequestHandler = async (req, res) => {
     const userId = req.body.userId;
     const exerciseIdQueryParam = req.query.exerciseId;
@@ -52,6 +70,12 @@ export const getSetEntries: RequestHandler = async (req, res) => {
 
 };
 
+/**
+ * Handles the delete set entry request.
+ * @param req - The request object.
+ * @param res - The response object.
+ * @returns The RequestHandler function.
+*/
 export const deleteSetEntry: RequestHandler = async (req, res) => {
 const idParam = req.params.id;
 const userId = req.body.userId;

@@ -1,9 +1,12 @@
 import { RequestHandler } from "express";
 import * as ExerciseService from './exercise.service';
 
-
-
-
+/**
+ * Handles the get exercises request.
+ * @param req - The request object.
+ * @param res - The response object.
+ * @returns The RequestHandler function.
+ */
 export const getExercises: RequestHandler = async (req, res) => {
     const idParam = req.params.id;
 

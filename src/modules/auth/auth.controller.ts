@@ -3,6 +3,13 @@ import * as AuthService from './auth.service';
 import { generateToken, generateRefreshToken } from './auth.service'; 
 import { EmailAlreadyInUseException, InvalidCredentialsException, UserNotFoundException } from "./auth.exceptions";
 
+
+/**
+ * Handles the login request.
+ * @param req - The request object.
+ * @param res - The response object.
+ * @returns The RequestHandler function.
+ */
 export const login: RequestHandler = async (req, res) => {
     const { email, password } = req.body;
     try {
@@ -23,6 +30,12 @@ export const login: RequestHandler = async (req, res) => {
     }
 };
 
+/**
+ * Handles the create account request.
+ * @param req - The request object.
+ * @param res - The response object.
+ * @returns The RequestHandler function.
+ */
 export const createAccount: RequestHandler = async (req, res) => {
     const { email, password } = req.body;
     try {
@@ -46,6 +59,12 @@ export const createAccount: RequestHandler = async (req, res) => {
     }
 };
 
+/**
+ * Handles the refresh token request.
+ * @param req - The request object.
+ * @param res - The response object.
+ * @returns The RequestHandler function.
+ */
 export const refreshToken: RequestHandler = async (req, res) => {
     try{
         console.log('Refreshing Token');
@@ -56,6 +75,12 @@ export const refreshToken: RequestHandler = async (req, res) => {
     }
 };
 
+/**
+ * Handles the logout request.
+ * @param req - The request object.
+ * @param res - The response object.
+ * @returns The RequestHandler function.
+ */
 export const logout: RequestHandler = async (req, res) => {
     try{
         console.log('Logging Out');
