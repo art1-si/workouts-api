@@ -39,3 +39,10 @@ export class TokenInvalidException extends Error {
         this.name = "TokenInvalid";
     }
 }
+
+export class ForbiddenException extends Error {
+    constructor(message: string) {
+        super(message); 
+        this.name = "ForbiddenException";
+    }
+}
