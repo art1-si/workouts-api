@@ -5,8 +5,9 @@
   "main": "dist/app.js",
   "scripts": {
     "lint": "eslint --ext .js,.ts .",
-    "tsc": "npx tsc",
-    "start": "npm run tsc && nodemon dist/app.js"
+    "compile": "npx tsc",
+    "run": "npm run compile && nodemon dist/app.js",
+    "build": "node dist/app.js"
   },
   "keywords": [],
   "author": "",

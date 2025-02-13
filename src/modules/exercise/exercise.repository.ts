@@ -7,7 +7,7 @@ import { Exercise } from "./exercise.model";
  * @throws {Error} When the query fails
  */
 export const getExercises = async (): Promise<Exercise[]> => {
-    const sql = 'SELECT * FROM exercise';
+    const sql = 'SELECT * FROM exercises_schema.exercise';
     const result = await execute(sql);
     return result.rows;
 }
@@ -19,7 +19,7 @@ export const getExercises = async (): Promise<Exercise[]> => {
  * @throws {Error} When the query fails
  */
 export const getExerciseById = async (id: number): Promise<Exercise | null> => {
-    const sql = 'SELECT * FROM exercise WHERE id = $1';
+    const sql = 'SELECT * FROM exercises_schema.exercise WHERE id = $1';
     const result = await execute(sql, [id]);
     return result.rows[0] || null;
 }

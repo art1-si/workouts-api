@@ -12,7 +12,7 @@ import { execute } from "../../data_source/postgresql_database_client";
  * @throws {Error} When the query fails
  */
 export const create = async (exerciseId: number, userId: number, weight: number, reps: number): Promise<SetEntry> => {
-    const sql = 'INSERT INTO set_entry (exercise_id, user_id, weight, reps) VALUES ($1, $2, $3, $4) RETURNING *';
+    const sql = 'INSERT INTO set_entires_schema.set_entry (exercise_id, user_id, weight, reps) VALUES ($1, $2, $3, $4) RETURNING *';
     const result = await execute(sql, [exerciseId, userId, weight, reps]);
     const created = result.rows[0];
 
@@ -33,7 +33,7 @@ export const create = async (exerciseId: number, userId: number, weight: number,
  */
 export const update = async (id: number, weight: number, reps: number): Promise<SetEntry | null> => {
     const currentTime = new Date().toISOString();
-    const sql = 'UPDATE set_entry SET weight = COALESCE($1,weight), reps = COALESCE($2,reps), updated_at = $3 WHERE id = $4 RETURNING *';
+    const sql = 'UPDATE set_entries_schema.set_entry SET weight = COALESCE($1,weight), reps = COALESCE($2,reps), updated_at = $3 WHERE id = $4 RETURNING *';
     const result = await execute(sql, [weight, reps, currentTime ,id]);
     const updated = result.rows[0] || null;
 
@@ -51,7 +51,7 @@ export const update = async (id: number, weight: number, reps: number): Promise<
  * @throws {Error} When the query fails
  */
 export const getById = async (id: number): Promise<SetEntry | null> => {
-    const sql = 'SELECT * FROM set_entry WHERE id = $1';
+    const sql = 'SELECT * FROM set_entries_schema.set_entry WHERE id = $1';
     const result = await execute(sql, [id]);
     const setEntry = result.rows[0];
 
@@ -72,7 +72,7 @@ export const getById = async (id: number): Promise<SetEntry | null> => {
  * @throws {Error} When the query fails
  */
 export const getByUserAndExercise = async (userId: number, exerciseId: number): Promise<SetEntry[]> => {
-    const sql = 'SELECT * FROM set_entry WHERE user_id = $1 AND exercise_id = $2';
+    const sql = 'SELECT * FROM set_entries_schema.set_entry WHERE user_id = $1 AND exercise_id = $2';
     const result = await execute(sql, [userId, exerciseId]);
 
     return result.rows.map(setEntryParser);
@@ -85,7 +85,7 @@ export const getByUserAndExercise = async (userId: number, exerciseId: number): 
  * @throws {Error} When the query fails
  */
 export const getAll = async (userId: number): Promise<SetEntry[]> => {
-    const sql = 'SELECT * FROM set_entry WHERE user_id = $1';
+    const sql = 'SELECT * FROM set_entries_schema.set_entry WHERE user_id = $1';
     const result = await execute(sql, [userId]);
     return result.rows.map(setEntryParser);
 };
@@ -97,7 +97,7 @@ export const getAll = async (userId: number): Promise<SetEntry[]> => {
  * @throws {Error} When the query fails
  */
 export const deleteById = async (id : number): Promise<boolean> => {
-    const sql = 'DELETE FROM set_entry WHERE id = $1';
+    const sql = 'DELETE FROM set_entries_schema.set_entry WHERE id = $1';
     await execute(sql, [id]);
     return true;
 }

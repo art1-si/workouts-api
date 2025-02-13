@@ -9,7 +9,7 @@ import { User } from './auth.model';
  * @throws {Error} When the query fails
  */
 export const createUser = async (email: string, hashedPassword: string): Promise<User> => {
-    const sql = 'INSERT INTO workout_user (email, password) VALUES ($1, $2) RETURNING id, email';
+    const sql = 'INSERT INTO workouts_users_schema.workouts_user (email, password) VALUES ($1, $2) RETURNING id, email';
     const result = await execute(sql, [email, hashedPassword]);
     return result.rows[0];
 };
@@ -21,7 +21,7 @@ export const createUser = async (email: string, hashedPassword: string): Promise
  * @throws {Error} When the query fails
  */
 export const findUserByUsername = async (email: string): Promise<User | null> => {
-    const sql = 'SELECT * FROM workout_user WHERE email = $1';
+    const sql = 'SELECT * FROM workouts_users_schema.workouts_user WHERE email = $1';
     const result = await execute(sql, [email]);
     return result.rows[0] || null;
 };
