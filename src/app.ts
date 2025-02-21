@@ -8,7 +8,7 @@ import './configs/env_configs';
 import { verifyToken } from './modules/auth/auth.middleware';
 
 const app = express();
-const port = process.env.PORT || 3000;
+const port = parseInt(process.env.PORT as string, 10) || 3000;
 
 app.use(express.json());
 app.use(cors())
@@ -25,4 +25,5 @@ app.use('/', verifyToken)
 app.use('/', exerciseRoute)
 app.use('/', setEntryRoute)
 
-app.listen(port);
+app.listen(port, '127.0.0.1',()=>{
+});
